@@ -44,6 +44,6 @@ import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',\
     level=logging.INFO)
 
-model = word2vec.Word2Vec(sentences, workers=2, size=200, min_count=50, window=10, downsampling=1e-3)
+model = word2vec.Word2Vec(sentences, workers=4, size=200, min_count=50, window=10, sample=1e-3)
 model.init_sims(replace=True)
 model.save("bowmbop_word2vec")
