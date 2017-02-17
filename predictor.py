@@ -53,3 +53,12 @@ for review in test["review"]:
     clean_test_reviews.append( review2list(review) )
 
 testDataVecs = make_avg_vec( clean_test_reviews, model, num_features )
+
+from sklearn.ensemble import RandomForestClassifier
+forest = RandomForestClassifier( n_estimators = 100 )
+
+forest = forest.fit( trainDataVecs, train["sentiment"] )
+
+result = forest.predict( testDataVecs )
+
+output = pd.DataFrame( data={"id":test["id"], "sentiment":result} )
